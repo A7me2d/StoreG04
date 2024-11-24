@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using Store.Repository.Data.Contexts;
+
 namespace StoreG04.Apis
 {
     public class Program
@@ -14,6 +17,11 @@ namespace StoreG04.Apis
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+
+            builder.Services.AddDbContext<StoreDbContext>(option =>
+            {
+                option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
