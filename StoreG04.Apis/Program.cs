@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Store.Repository.Data;
 using Store.Repository.Data.Contexts;
 
 namespace StoreG04.Apis
@@ -37,6 +38,7 @@ namespace StoreG04.Apis
             try
             {
                 await context.Database.MigrateAsync();
+                await StoreDbContextSeed.SeedAsync(context);
             }
             catch (Exception ex)
             {
